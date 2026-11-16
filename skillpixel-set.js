@@ -67,5 +67,14 @@ window.skillpixelCodeExamples = [
 {title:'Terminal · Lọc lỗi trong log qua pipe',code:'grep -n "ERROR" /content/skillpixel_terminal_lab/train.log\ncut -d: -f1 /content/skillpixel_terminal_lab/train.log | sort | uniq -c'},
 {title:'Terminal · Tìm file CSV trong thư mục demo',code:'find /content/skillpixel_terminal_lab -type f -name "*.csv"'},
 {title:'Terminal · Kiểm tra GPU trước khi dùng',code:'if command -v nvidia-smi >/dev/null 2>&1; then\n  nvidia-smi --query-gpu=name,memory.total,memory.used --format=csv\nelse\n  echo "Chưa có GPU NVIDIA hoặc chưa có nvidia-smi"\nfi'},
-{title:'Terminal · Chạy Python và lưu log',code:'python train_demo.py > train_demo.log 2>&1\ntail -n 2 train_demo.log\ncat train_demo.log | tee copy.log'}
+{title:'Terminal · Chạy Python và lưu log',code:'python train_demo.py > train_demo.log 2>&1\ntail -n 2 train_demo.log\ncat train_demo.log | tee copy.log'},
+{title:'NumPy · Tạo mảng và kiểm tra thuộc tính',code:'import numpy as np\na = np.array([[1, 2], [3, 4]], dtype=np.float32)\nprint(a)\nprint(a.shape, a.ndim, a.size, a.dtype)'},
+{title:'NumPy · Slicing và copy',code:'import numpy as np\na = np.arange(1, 26).reshape(5, 5)\nsub = a[1:4, 2:5].copy()\nprint(sub)'},
+{title:'NumPy · Boolean mask',code:'import numpy as np\nx = np.arange(10)\nselected = x[(x > 2) & (x < 7)]\nprint(selected)\nprint(np.count_nonzero(x % 2 == 0))'},
+{title:'NumPy · Reshape và transpose',code:'import numpy as np\na = np.arange(1, 7).reshape(3, 2)\nb = a.reshape(2, -1)\nprint(b)\nprint(a.T.shape)'},
+{title:'NumPy · Broadcasting theo hàng và cột',code:'import numpy as np\nm = np.arange(1, 10).reshape(3, 3)\nrow_values = np.array([10, 20, 30])\ncolumn_values = row_values.reshape(3, 1)\nprint(m + row_values)\nprint(m + column_values)'},
+{title:'NumPy · concatenate và stack',code:'import numpy as np\na = np.arange(5)\nb = np.arange(5, 10)\nprint(np.concatenate([a, b]).shape)\nprint(np.stack([a, b], axis=0).shape)\nprint(np.stack([a, b], axis=1).shape)'},
+{title:'NumPy · axis tổng theo hàng và cột',code:'import numpy as np\nm = np.arange(1, 7).reshape(2, 3)\nprint(m.sum(axis=0))  # tổng từng cột\nprint(m.sum(axis=1))  # tổng từng hàng'},
+{title:'NumPy · RGB sang BGR',code:'import numpy as np\nimg = np.array([[[10, 20, 30]]], dtype=np.uint8)\nbgr = img[..., ::-1]\nprint(img[0, 0])\nprint(bgr[0, 0])'},
+{title:'NumPy · NaN và overflow uint8',code:'import numpy as np\nx = np.array([1.0, 4.0, np.nan])\nprint(np.sqrt(x))\nprint(np.isnan(x))\na = np.array([250], dtype=np.uint8)\nprint(a.astype(np.uint16) + 10)'}
 ];
